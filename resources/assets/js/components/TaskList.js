@@ -3,22 +3,23 @@ import ReactDOM from 'react-dom';
 
 class TaskList extends Component{
 
-    delTask(key){
-        alert('value: ' + item);
+    delete(id){
+        this.props.delete(id);
+        console.log(id);
     }
 
     render(){
         return(
             <tbody>
-                {this.props.items.map((item)=>
+                {this.props.items.map((item,id)=>
 
-                    <tr key={Math.random()}>
+                    <tr key={id}>
                         <td className="table-text" width="60%" >
                             {item}
                         </td>
                         <td>
-                            <form>          
-                                <button type="button" className="btn btn-danger" onClick={this.delTask(key)}>
+                            <form>         
+                                <button type="button" className="btn btn-danger" onClick={()=>this.delete(id)}>
                                     <i className="fa fa-btn fa-trash"></i>Delete
                                 </button>
                             </form>

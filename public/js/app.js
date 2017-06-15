@@ -11343,131 +11343,139 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 var NewTask = function (_Component) {
-    _inherits(NewTask, _Component);
+  _inherits(NewTask, _Component);
 
-    function NewTask() {
-        _classCallCheck(this, NewTask);
+  function NewTask() {
+    _classCallCheck(this, NewTask);
 
-        var _this = _possibleConstructorReturn(this, (NewTask.__proto__ || Object.getPrototypeOf(NewTask)).call(this));
+    var _this = _possibleConstructorReturn(this, (NewTask.__proto__ || Object.getPrototypeOf(NewTask)).call(this));
 
-        _this.state = {
-            value: '',
-            items: []
-        };
-        return _this;
+    _this.state = {
+      value: '',
+      items: []
+    };
+    return _this;
+  }
+
+  _createClass(NewTask, [{
+    key: 'handleChange',
+    value: function handleChange(event) {
+      this.setState({ value: event.target.value });
     }
+  }, {
+    key: 'addTask',
+    value: function addTask(event) {
+      if (this.state.value == '') {
+        alert('Please Enter Task');
+      } else {
+        this.setState({
+          items: this.state.items.concat([this.state.value]),
+          value: ''
+        });
+      }
+    }
+  }, {
+    key: 'delete',
+    value: function _delete(id) {
+      var items = this.state.items.filter(function (item) {
+        return id != id;
+      });
+      this.setState({ items: items });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
 
-    _createClass(NewTask, [{
-        key: 'handleChange',
-        value: function handleChange(event) {
-            this.setState({ value: event.target.value });
-        }
-    }, {
-        key: 'addTask',
-        value: function addTask(event) {
-            if (this.state.value == '') {
-                alert('Please Enter Task');
-            } else {
-                this.setState({
-                    items: this.state.items.concat([this.state.value]),
-                    value: ''
-                });
-            }
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-            var _this2 = this;
-
-            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'div',
+        null,
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'div',
+          { className: 'panel panel-default' },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            { className: 'panel-heading' },
+            'New Task'
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            { className: 'panel-body' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'form',
+              { className: 'form-horizontal' },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
-                null,
+                { className: 'form-group' },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'div',
-                    { className: 'panel panel-default' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'panel-heading' },
-                        'New Task'
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'panel-body' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'form',
-                            { className: 'form-horizontal' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'div',
-                                { className: 'form-group' },
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                    'label',
-                                    { className: 'col-sm-3 control-label' },
-                                    'Task'
-                                ),
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                    'div',
-                                    { className: 'col-sm-6' },
-                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', className: 'form-control', value: this.state.value, onChange: function onChange(event) {
-                                            return _this2.handleChange(event);
-                                        } })
-                                )
-                            ),
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'div',
-                                { className: 'form-group' },
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                    'div',
-                                    { className: 'col-sm-offset-3 col-sm-6' },
-                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                        'button',
-                                        { type: 'button', className: 'btn btn-default', onClick: function onClick(event) {
-                                                return _this2.addTask(event);
-                                            } },
-                                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-btn fa-plus' }),
-                                        'Add Task'
-                                    )
-                                )
-                            )
-                        )
-                    )
+                  'label',
+                  { className: 'col-sm-3 control-label' },
+                  'Task'
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'div',
-                    { className: 'panel panel-default' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'panel-heading' },
-                        'Current Tasks'
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'panel-body' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'table',
-                            { className: 'table table-striped task-table' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'thead',
-                                null,
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                    'th',
-                                    null,
-                                    'Task'
-                                ),
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                    'th',
-                                    null,
-                                    '\xA0'
-                                )
-                            ),
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__TaskList__["a" /* default */], { items: this.state.items })
-                        )
-                    )
+                  'div',
+                  { className: 'col-sm-6' },
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', className: 'form-control', value: this.state.value, onChange: function onChange(event) {
+                      return _this2.handleChange(event);
+                    } })
                 )
-            );
-        }
-    }]);
+              ),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { className: 'form-group' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'div',
+                  { className: 'col-sm-offset-3 col-sm-6' },
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'button',
+                    { type: 'button', className: 'btn btn-default', onClick: function onClick(event) {
+                        return _this2.addTask(event);
+                      } },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-btn fa-plus' }),
+                    'Add Task'
+                  )
+                )
+              )
+            )
+          )
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'div',
+          { className: 'panel panel-default' },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            { className: 'panel-heading' },
+            'Current Tasks'
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            { className: 'panel-body' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'table',
+              { className: 'table table-striped task-table' },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'thead',
+                null,
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'th',
+                  null,
+                  'Task'
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'th',
+                  null,
+                  '\xA0'
+                )
+              ),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__TaskList__["a" /* default */], { items: this.state.items, 'delete': this.delete.bind(this) })
+            )
+          )
+        )
+      );
+    }
+  }]);
 
-    return NewTask;
+  return NewTask;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
 /* harmony default export */ __webpack_exports__["a"] = (NewTask);
@@ -11502,9 +11510,10 @@ var TaskList = function (_Component) {
     }
 
     _createClass(TaskList, [{
-        key: 'delTask',
-        value: function delTask(key) {
-            alert('value: ' + item);
+        key: 'delete',
+        value: function _delete(id) {
+            this.props.delete(id);
+            console.log(id);
         }
     }, {
         key: 'render',
@@ -11514,10 +11523,10 @@ var TaskList = function (_Component) {
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'tbody',
                 null,
-                this.props.items.map(function (item) {
+                this.props.items.map(function (item, id) {
                     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'tr',
-                        { key: Math.random() },
+                        { key: id },
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'td',
                             { className: 'table-text', width: '60%' },
@@ -11531,7 +11540,9 @@ var TaskList = function (_Component) {
                                 null,
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                     'button',
-                                    { type: 'button', className: 'btn btn-danger', onClick: _this2.delTask(key) },
+                                    { type: 'button', className: 'btn btn-danger', onClick: function onClick() {
+                                            return _this2.delete(id);
+                                        } },
                                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-btn fa-trash' }),
                                     'Delete'
                                 )

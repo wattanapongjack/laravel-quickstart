@@ -26,6 +26,11 @@ class NewTask extends Component {
 		}
   	}
 
+	delete(id){
+		let items = this.state.items.filter(item => id != id);
+		this.setState({items: items});
+	}
+
     render() {
         return (
 		<div>
@@ -67,7 +72,7 @@ class NewTask extends Component {
 							<th>Task</th>
 							<th>&nbsp;</th>
 						</thead>
-						<TaskList items={this.state.items} />
+						<TaskList items={this.state.items} delete={this.delete.bind(this)}/>
                 	</table>
             	</div>
 			</div>
