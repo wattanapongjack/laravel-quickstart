@@ -11376,11 +11376,12 @@ var NewTask = function (_Component) {
     }
   }, {
     key: 'delete',
-    value: function _delete(id) {
-      var items = this.state.items.filter(function (item) {
-        return id != id;
-      });
-      this.setState({ items: items });
+    value: function _delete(item) {
+      var newState = this.state.items;
+      if (newState.indexOf(item) > -1) {
+        newState.splice(newState.indexOf(item), 1);
+        this.setState({ items: newState });
+      }
     }
   }, {
     key: 'render',
@@ -11511,9 +11512,9 @@ var TaskList = function (_Component) {
 
     _createClass(TaskList, [{
         key: 'delete',
-        value: function _delete(id) {
-            this.props.delete(id);
-            console.log(id);
+        value: function _delete(item) {
+            this.props.delete(item);
+            console.log(item);
         }
     }, {
         key: 'render',
@@ -11541,7 +11542,7 @@ var TaskList = function (_Component) {
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                     'button',
                                     { type: 'button', className: 'btn btn-danger', onClick: function onClick() {
-                                            return _this2.delete(id);
+                                            return _this2.delete(item);
                                         } },
                                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-btn fa-trash' }),
                                     'Delete'

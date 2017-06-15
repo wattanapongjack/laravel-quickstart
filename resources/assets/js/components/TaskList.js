@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 
 class TaskList extends Component{
 
-    delete(id){
-        this.props.delete(id);
-        console.log(id);
+    delete(item){
+        this.props.delete(item);
+        console.log(item);
     }
 
     render(){
@@ -19,7 +19,7 @@ class TaskList extends Component{
                         </td>
                         <td>
                             <form>         
-                                <button type="button" className="btn btn-danger" onClick={()=>this.delete(id)}>
+                                <button type="button" className="btn btn-danger" onClick={()=>this.delete(item)}>
                                     <i className="fa fa-btn fa-trash"></i>Delete
                                 </button>
                             </form>

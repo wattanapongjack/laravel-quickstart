@@ -26,9 +26,12 @@ class NewTask extends Component {
 		}
   	}
 
-	delete(id){
-		let items = this.state.items.filter(item => id != id);
-		this.setState({items: items});
+	delete(item){
+		const newState = this.state.items;
+		if (newState.indexOf(item) > -1) {
+			newState.splice(newState.indexOf(item), 1);
+			this.setState({items: newState})
+	  }
 	}
 
     render() {
