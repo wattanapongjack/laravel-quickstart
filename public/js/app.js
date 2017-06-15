@@ -11345,14 +11345,14 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var NewTask = function (_Component) {
     _inherits(NewTask, _Component);
 
-    function NewTask(props) {
+    function NewTask() {
         _classCallCheck(this, NewTask);
 
-        var _this = _possibleConstructorReturn(this, (NewTask.__proto__ || Object.getPrototypeOf(NewTask)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (NewTask.__proto__ || Object.getPrototypeOf(NewTask)).call(this));
 
         _this.state = {
             value: '',
-            item: []
+            items: []
         };
         return _this;
     }
@@ -11369,11 +11369,10 @@ var NewTask = function (_Component) {
                 alert('Please Enter Task');
             } else {
                 this.setState({
-                    item: this.state.item.concat([this.state.value]),
+                    items: this.state.items.concat([this.state.value]),
                     value: ''
                 });
             }
-            event.preventDefault();
         }
     }, {
         key: 'render',
@@ -11460,7 +11459,7 @@ var NewTask = function (_Component) {
                                     '\xA0'
                                 )
                             ),
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__TaskList__["a" /* default */], { item: this.state.item })
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__TaskList__["a" /* default */], { items: this.state.items })
                         )
                     )
                 )
@@ -11504,47 +11503,42 @@ var TaskList = function (_Component) {
 
     _createClass(TaskList, [{
         key: 'delTask',
-        value: function delTask(event) {
-            alert('value: ');
-            event.preventDefault();
+        value: function delTask(key) {
+            alert('value: ' + item);
         }
     }, {
         key: 'render',
         value: function render() {
-            var display = function display(value) {
-                var _this2 = this;
-
-                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'tr',
-                    null,
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'td',
-                        { className: 'table-text', width: '60%' },
-                        value
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'td',
-                        null,
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'form',
-                            null,
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'button',
-                                { type: 'submit', className: 'btn btn-danger', onClick: function onClick(event) {
-                                        return _this2.delTask(event);
-                                    } },
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-btn fa-trash' }),
-                                'Delete'
-                            )
-                        )
-                    )
-                );
-            };
+            var _this2 = this;
 
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'tbody',
                 null,
-                this.props.item.map(display)
+                this.props.items.map(function (item) {
+                    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'tr',
+                        { key: Math.random() },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'td',
+                            { className: 'table-text', width: '60%' },
+                            item
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'td',
+                            null,
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'form',
+                                null,
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                    'button',
+                                    { type: 'button', className: 'btn btn-danger', onClick: _this2.delTask(key) },
+                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-btn fa-trash' }),
+                                    'Delete'
+                                )
+                            )
+                        )
+                    );
+                })
             );
         }
     }]);

@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom';
 import TaskList from './TaskList';
 
 class NewTask extends Component {
-	constructor(props) {
-    super(props);
-    this.state = {
-		value : '',
-		item : []
-	};
-  }
+	constructor() {
+		super();
+		this.state = {
+			value : '',
+			items : []
+		};
+  	}
 
 	handleChange(event) {
     	this.setState({value: event.target.value});
@@ -20,11 +20,10 @@ class NewTask extends Component {
 			alert('Please Enter Task');
 		}else{
 			this.setState({
-				item: this.state.item.concat([this.state.value]),
+				items: this.state.items.concat([this.state.value]),
 				value: ''
 			});
 		}
-    	event.preventDefault();
   	}
 
     render() {
@@ -68,7 +67,7 @@ class NewTask extends Component {
 							<th>Task</th>
 							<th>&nbsp;</th>
 						</thead>
-						<TaskList item={this.state.item} />
+						<TaskList items={this.state.items} />
                 	</table>
             	</div>
 			</div>
