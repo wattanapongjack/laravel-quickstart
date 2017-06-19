@@ -1,42 +1,23 @@
-import React from 'react';
-import CurrentTask from './CurrentTask';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { clickAdd } from '../actions/index';
+import { bindActionCreators } from 'redux';
 
-class NewTask extends React.Component {
+class TaskAdd extends Component{
 
     constructor(props) {
 		super(props);
 		this.state = {
-			value : '',
-			items : []
+			value : ''
 		};
   	}
 
     handleChange(event) {
-    	this.setState({value: event.target.value});
+    	this.setState({value: event.target.value})
   	}
 
-    addTask(event) {
-	    if(this.state.value==''){
-			alert('Please Enter Task');
-		}else{
-			this.setState({
-				items: this.state.items.concat([this.state.value]),
-				value: ''
-			});  
-		}
-  	}
-
-    delete(item){
-		const newState = this.state.items;
-		if (newState.indexOf(item) > -1) {
-			newState.splice(newState.indexOf(item), 1);
-			this.setState({items: newState})
-	  }
-	}
-
-    render() {
-        return ( 
-            <div>
+    render(){
+        return(
                 <div className="panel panel-default">
                     <div className="panel-heading">
                         New Task
@@ -53,7 +34,7 @@ class NewTask extends React.Component {
 
                             <div className="form-group">
                                 <div className="col-sm-offset-3 col-sm-6">
-                                    <button type="button" className="btn btn-default" onClick={event => this.addTask(event)}>
+                                    <button type="button" className="btn btn-default" onClick={(event) => this.props.clickAdd(this.state.value)}>
                                         Add Task
                                     </button>
                                 </div>
@@ -61,9 +42,18 @@ class NewTask extends React.Component {
                         </form>
                     </div>
                 </div>
-                <CurrentTask items={this.state.items} delete={this.delete.bind(this)}/>
-            </div>
-        );
+        )
     }
 }
-export default NewTask;
+
+function mapStateToProps(state){
+    return{
+        tasks : state.tasks
+    };
+}
+
+function mapDispatchToProps(dispatch){
+    return bindActionCreators({clickAdd : clickAdd}, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TaskAdd);

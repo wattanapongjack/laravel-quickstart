@@ -1,17 +1,15 @@
-require('./bootstrap');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
 
-import React, { Component } from 'react';
-import ReactDom from 'react-dom';
-import NewTask from './components/NewTask';
-import CurrentTask from './components/CurrentTask';
+import App from './components/app';
+import reducers from './reducers';
 
-class App extends Component {
+const createStoreWithMiddleware = applyMiddleware()(createStore);
 
-    render() {
-        return ( 
-            <NewTask />
-        );
-    }
-}
-
-ReactDom.render( <App /> , document.getElementById('root'));
+ReactDOM.render(
+  <Provider store={createStoreWithMiddleware(reducers)}>
+    <App />
+  </Provider>
+  , document.getElementById('task'));
