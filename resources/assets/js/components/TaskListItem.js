@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react';
 
-class TaskList extends Component{
+class TaskListItem extends React.Component{
 
     delete(item){
         this.props.delete(item);
@@ -20,7 +19,7 @@ class TaskList extends Component{
                         <td>
                             <form>         
                                 <button type="button" className="btn btn-danger" onClick={()=>this.delete(item)}>
-                                    <i className="fa fa-btn fa-trash"></i>Delete
+                                    Delete
                                 </button>
                             </form>
                         </td>
@@ -32,4 +31,4 @@ class TaskList extends Component{
     }
 }
 
-export default TaskList;
+export default TaskListItem;

@@ -19,7 +19,16 @@
     "lodash": "^4.17.4",
     "react": "^15.6.0",
     "react-dom": "^15.6.0",
+    "react-router": "^4.1.1",
+    "react-router-config": "^1.0.0-beta.3",
+    "react-router-dom": "^4.1.1",
     "react-router-form": "^3.0.0",
+    "react-router-redux": "^4.0.8",
+    "redux": "^3.6.0",
+    "redux-devtools": "^3.4.0",
     "vue": "^2.1.10"
+  },
+  "dependencies": {
+    "react-redux": "^5.0.5"
   }
 }
