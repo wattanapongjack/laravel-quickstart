@@ -1,11 +1,11 @@
 const initialState = [
   {
-    text: '',
+    text: 'Redux',
     id: 0
   }
 ]
 
-export default function(state = [], action) {
+export default function(state = initialState, action) {
   switch (action.type) {
     case 'TASK_ADDED':
       return [

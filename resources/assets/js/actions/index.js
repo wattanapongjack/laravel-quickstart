@@ -9,5 +9,5 @@ export function deleteTask(id){
   return{
     type: 'TASK_DELETE',
     id
-  }
+  };
 }

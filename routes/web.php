@@ -18,8 +18,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', function(){
-	return redirect('/tasks');
-});
+ 	return view('home');
+ });
 
 Route::get('/tasks', 'TaskController@index');
 Route::post('/task', 'TaskController@store');
