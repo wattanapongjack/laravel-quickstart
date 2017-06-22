@@ -6,7 +6,7 @@ import { Field, reduxForm } from 'redux-form';
 
 class TaskAdd extends Component{
 
-    renderNameField(field){
+    renderField(field){
         return(
             <div className="form-group has-danger" >
                 <label className="col-sm-3 control-label">{field.label}</label>
@@ -52,8 +52,7 @@ class TaskAdd extends Component{
                             <Field
                                 label="Task" 
                                 name="name"
-                                component={this.renderNameField}
-                            />
+                                component={this.renderField} />
                             {/* <div className="form-group">
                                 <label className="col-sm-3 control-label">Task</label>
                                 <div className="col-sm-6">
@@ -79,7 +78,7 @@ function validate(values){
     const errors = {};
 
     if(!values.name){
-        errors.name = "Enter Task!";
+        errors.name = "Enter some task";
     }
 
     return errors;

@@ -14,7 +14,7 @@ export default function(state = [], action) {
       return [
         {
           id: action.payload.data.tasks.id,
-          text: action.payload.data.tasks.name,
+          name: action.payload.data.tasks.name,
         },
         ...state
       ]

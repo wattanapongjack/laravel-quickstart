@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 
 class TaskCurrent extends Component{
     componentDidMount(){
+        // console.log(this.props.getTasks())
         this.props.getTasks();
     }
 
@@ -16,8 +17,7 @@ class TaskCurrent extends Component{
     }
 
     // this.props.tasks.map((task) => {
-    //         return(
-                    
+    //         return(                
     //         );
     //     });
     
@@ -42,11 +42,11 @@ class TaskCurrent extends Component{
     }
 
     renderReact(){
-        return this.props.reacttasks.map((reacttask) => {
+        return _.map(this.props.reacttasks, reacttask => {
             return(
                 <tr key={reacttask.id}>
                     <td className="table-text" width="60%" >
-                        {reacttask.text}
+                        {reacttask.name}
                     </td>
                     <td>
                         <form>         
@@ -77,8 +77,8 @@ class TaskCurrent extends Component{
                                 <th>&nbsp;</th>
                             </thead>
                             <tbody>
-                                {this.renderReact()}
                                 {this.renderTasks()}
+                                {this.renderReact()}
                             </tbody>
                         </table>
                     </div>
