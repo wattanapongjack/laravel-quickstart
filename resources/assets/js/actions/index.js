@@ -23,15 +23,11 @@ export function getTasks(){
 }
 
 export function createTask(values){
-  const request = axios.post(`${API_URL}/task${API_TOKEN}`, values)
-    .then(function(response){
-      console.log(response.json)
-      // return response.json();
-    });
+  const request = axios.post(`${API_URL}/task${API_TOKEN}`, values);
 
   return {
     type: CREATE_TASK ,
-    payload: values
+    payload: request
   };
 }
 

@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 import TasksReducer from './reducer_tasks';
-import CreateTask from './reducer_create_tasks';
+import NewTaskRe from './reducer_new_task';
 import { reducer as formReducer } from 'redux-form';
 
 const rootReducer = combineReducers({
   tasks : TasksReducer,
-  createtasks : CreateTask,
+  reacttasks: NewTaskRe,
   form : formReducer
 });
 

@@ -9,20 +9,6 @@ export default function(state = [], action) {
     case GET_TASKS :
       return _.mapKeys(action.payload.data.tasks, 'id');
 
-    // case CREATE_TASK :
-    //   return [
-    //     {
-    //       id: state.reduce((maxId, task) => Math.max(task.id, maxId), -1) + 1,
-    //       name: action.values.name,
-    //     },
-    //     ...state
-    //   ]
-
-    // case DELETE_TASKS :
-    //   return state.filter(task =>
-    //     task.id !== action.id
-    //   )
-
     default:
       return state
   }

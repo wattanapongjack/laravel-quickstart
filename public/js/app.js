@@ -3590,15 +3590,11 @@ function getTasks() {
 }
 
 function createTask(values) {
-  var request = __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(API_URL + '/task' + API_TOKEN, values).then(function (response) {
-    console.log(response.json
-    // return response.json();
-    );
-  });
+  var request = __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(API_URL + '/task' + API_TOKEN, values);
 
   return {
     type: CREATE_TASK,
-    payload: values
+    payload: request
   };
 }
 
@@ -34331,7 +34327,7 @@ var TaskCurrent = function (_Component) {
                             __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
                                 'button',
                                 { type: 'button', className: 'btn btn-danger', onClick: function onClick() {
-                                        return _this2.onDeleteClick(task.id);
+                                        return _this2.onDeleteClick(task.id, _this2.props.getTasks());
                                     } },
                                 'Delete'
                             )
@@ -34345,14 +34341,14 @@ var TaskCurrent = function (_Component) {
         value: function renderReact() {
             var _this3 = this;
 
-            return this.props.createtasks.map(function (createtask) {
+            return this.props.reacttasks.map(function (reacttask) {
                 return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
                     'tr',
-                    { key: createtask.id },
+                    { key: reacttask.id },
                     __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
                         'td',
                         { className: 'table-text', width: '60%' },
-                        createtask.text
+                        reacttask.text
                     ),
                     __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
                         'td',
@@ -34363,7 +34359,7 @@ var TaskCurrent = function (_Component) {
                             __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
                                 'button',
                                 { type: 'button', className: 'btn btn-danger', onClick: function onClick() {
-                                        return _this3.onDeleteClick(createtask.id);
+                                        return _this3.onDeleteClick(reacttask.id);
                                     } },
                                 'Delete'
                             )
@@ -34430,7 +34426,7 @@ var TaskCurrent = function (_Component) {
 function mapStateToProps(state) {
     return {
         tasks: state.tasks,
-        createtasks: state.createtasks
+        reacttasks: state.reacttasks
     };
 }
 
@@ -34504,7 +34500,7 @@ var TaskHome = function (_Component) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_redux__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__reducer_tasks__ = __webpack_require__(215);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__reducer_create_tasks__ = __webpack_require__(539);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__reducer_new_task__ = __webpack_require__(538);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_redux_form__ = __webpack_require__(183);
 
 
@@ -34513,7 +34509,7 @@ var TaskHome = function (_Component) {
 
 var rootReducer = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_redux__["d" /* combineReducers */])({
   tasks: __WEBPACK_IMPORTED_MODULE_1__reducer_tasks__["a" /* default */],
-  createtasks: __WEBPACK_IMPORTED_MODULE_2__reducer_create_tasks__["a" /* default */],
+  reacttasks: __WEBPACK_IMPORTED_MODULE_2__reducer_new_task__["a" /* default */],
   form: __WEBPACK_IMPORTED_MODULE_3_redux_form__["c" /* reducer */]
 });
 
@@ -34540,20 +34536,6 @@ var rootReducer = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_redux__["d" 
 
     case __WEBPACK_IMPORTED_MODULE_1__actions__["f" /* GET_TASKS */]:
       return __WEBPACK_IMPORTED_MODULE_0_lodash___default.a.mapKeys(action.payload.data.tasks, 'id');
-
-    // case CREATE_TASK :
-    //   return [
-    //     {
-    //       id: state.reduce((maxId, task) => Math.max(task.id, maxId), -1) + 1,
-    //       name: action.values.name,
-    //     },
-    //     ...state
-    //   ]
-
-    // case DELETE_TASKS :
-    //   return state.filter(task =>
-    //     task.id !== action.id
-    //   )
 
     default:
       return state;
@@ -70837,8 +70819,7 @@ module.exports = __webpack_require__(191);
 /* 535 */,
 /* 536 */,
 /* 537 */,
-/* 538 */,
-/* 539 */
+/* 538 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -70849,10 +70830,10 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
 // const initialState = [
-//   {
-//     text: 'Redux',
-//     id: 0
-//   }
+//     {
+//         text: "",
+//         id: Math.random()
+//     }
 // ]
 
 /* harmony default export */ __webpack_exports__["a"] = (function () {
@@ -70862,10 +70843,8 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   switch (action.type) {
     case __WEBPACK_IMPORTED_MODULE_0__actions__["d" /* CREATE_TASK */]:
       return [{
-        id: state.reduce(function (maxId, createtask) {
-          return Math.max(createtask.id, maxId);
-        }, -1) + 1,
-        text: action.payload.name
+        id: action.payload.data.tasks.id,
+        text: action.payload.data.tasks.name
       }].concat(_toConsumableArray(state));
 
     case __WEBPACK_IMPORTED_MODULE_0__actions__["e" /* DELETE_TASKS */]:

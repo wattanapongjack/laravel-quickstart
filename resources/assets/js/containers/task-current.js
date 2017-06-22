@@ -31,7 +31,7 @@ class TaskCurrent extends Component{
                     </td>
                     <td>
                         <form>         
-                            <button type="button" className="btn btn-danger" onClick={() => this.onDeleteClick(task.id)} >
+                            <button type="button" className="btn btn-danger" onClick={() => this.onDeleteClick(task.id, this.props.getTasks())} >
                                 Delete
                             </button>
                         </form>
@@ -42,15 +42,15 @@ class TaskCurrent extends Component{
     }
 
     renderReact(){
-        return this.props.createtasks.map((createtask) => {
+        return this.props.reacttasks.map((reacttask) => {
             return(
-                <tr key={createtask.id}>
+                <tr key={reacttask.id}>
                     <td className="table-text" width="60%" >
-                        {createtask.text}
+                        {reacttask.text}
                     </td>
                     <td>
                         <form>         
-                            <button type="button" className="btn btn-danger" onClick={() => this.onDeleteClick(createtask.id)} >
+                            <button type="button" className="btn btn-danger" onClick={() => this.onDeleteClick(reacttask.id)} >
                                 Delete
                             </button>
                         </form>
@@ -94,7 +94,7 @@ class TaskCurrent extends Component{
 function mapStateToProps(state){
     return{
         tasks: state.tasks,
-        createtasks: state.createtasks
+        reacttasks: state.reacttasks
     };
 }
 
