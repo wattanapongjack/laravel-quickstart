@@ -34,6 +34,10 @@ export function createTask(values){
 export function delTask(id){
   const request = axios.delete(`${API_URL}/task/${id}${API_TOKEN}`);
 
+  const request_load = fetch(`${API_URL}/tasks${API_TOKEN}`, {
+    method: 'GET'
+  })
+
   return{
     type: DELETE_TASKS,
     id

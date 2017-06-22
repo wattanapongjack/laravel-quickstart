@@ -2461,6 +2461,10 @@ function createTask(values) {
 function delTask(id) {
   var request = __WEBPACK_IMPORTED_MODULE_0_axios___default.a.delete(API_URL + '/task/' + id + API_TOKEN);
 
+  var request_load = fetch(API_URL + '/tasks' + API_TOKEN, {
+    method: 'GET'
+  });
+
   return {
     type: DELETE_TASKS,
     id: id
