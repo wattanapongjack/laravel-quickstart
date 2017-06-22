@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="col-sm-offset-2 col-sm-8">
-            <div id="task"></div>
+            <div id="newTask"></div>
         </div>
     </div>
 @endsection

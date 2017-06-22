@@ -2,6 +2,8 @@
 
 @section('content')
 <div class="container">
-    <div id="task"></div>     
+    <div class="col-sm-offset-2 col-sm-8">
+        <div id="newTask"></div>  
+    </div>   
 </div>
 @endsection

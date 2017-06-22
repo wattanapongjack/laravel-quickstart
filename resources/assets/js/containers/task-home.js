@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-export default class Home extends Component{
+export default class TaskHome extends Component{
     render(){
         return(
                 <div className="panel panel-default">

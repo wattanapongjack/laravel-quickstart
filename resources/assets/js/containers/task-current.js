@@ -1,31 +1,68 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { deleteTask } from '../actions/index';
+import { getTasks, delTask } from '../actions';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 
 class TaskCurrent extends Component{
-    renderList(){
-        return this.props.tasks.map((task) => {
-            return(
-                    <tr key={task.id}>
-                        <td className="table-text" width="60%" >
-                            {task.text}
-                        </td>
-                        <td>
-                            <form>         
-                                <button type="button" className="btn btn-danger" onClick={() => this.props.deleteTask(task.id)}>
-                                    Delete
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
+    componentDidMount(){
+        this.props.getTasks();
+    }
+
+    onDeleteClick(id){
+        console.log(id)
+        this.props.delTask(id);
+    }
+
+    // this.props.tasks.map((task) => {
+    //         return(
+                    
+    //         );
+    //     });
+    
+    renderTasks(){
+        // console.log(this.props.tasks)
+        return _.map(this.props.tasks, task => {
+            return (
+                <tr key={task.id}>
+                    <td className="table-text" width="60%" >
+                        {task.name}
+                    </td>
+                    <td>
+                        <form>         
+                            <button type="button" className="btn btn-danger" onClick={() => this.onDeleteClick(task.id)} >
+                                Delete
+                            </button>
+                        </form>
+                    </td>
+                </tr>
             );
         });
     }
 
+    renderReact(){
+        return this.props.createtasks.map((createtask) => {
+            return(
+                <tr key={createtask.id}>
+                    <td className="table-text" width="60%" >
+                        {createtask.text}
+                    </td>
+                    <td>
+                        <form>         
+                            <button type="button" className="btn btn-danger" onClick={() => this.onDeleteClick(createtask.id)} >
+                                Delete
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            );
+        });
+    }
+
+
+
     render(){
-        
         return(
             <div>
                 <div className="panel panel-default">
@@ -40,7 +77,8 @@ class TaskCurrent extends Component{
                                 <th>&nbsp;</th>
                             </thead>
                             <tbody>
-                                {this.renderList()}
+                                {this.renderReact()}
+                                {this.renderTasks()}
                             </tbody>
                         </table>
                     </div>
@@ -55,12 +93,13 @@ class TaskCurrent extends Component{
 
 function mapStateToProps(state){
     return{
-        tasks : state.tasks
+        tasks: state.tasks,
+        createtasks: state.createtasks
     };
 }
 
 function mapDispatchToProps(dispatch){
-    return bindActionCreators({deleteTask : deleteTask}, dispatch);
+    return bindActionCreators({getTasks:getTasks, delTask:delTask}, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(TaskCurrent);
+export default connect(mapStateToProps, mapDispatchToProps )(TaskCurrent);
